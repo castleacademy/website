@@ -1,9 +1,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource/dm-serif-text";
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", sans-serif;
+  --font-dm-serif-text: "DM Serif Text", serif;
+}
+
 @theme inline {
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-serif: var(--font-dm-serif-text);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
