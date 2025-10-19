@@ -1,0 +1,25 @@
+---
+import { PhoneIcon } from "lucide-react";
+import { Button } from "./ui/button";
+---
+
+<header
+  class="fixed z-2 flex justify-between items-center w-screen py-4 max-w-[1536px] inset-x-0 mx-auto"
+>
+  <h1>Castle Academy</h1>
+
+  <nav>
+    <ul class="flex gap-x-4">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <a href="#">
+    <Button variant={"embossed"}>
+      <span class="-translate-y-0.25">Hubungi Kami</span>
+      <PhoneIcon className="size-3" />
+    </Button>
+  </a>
+</header>
