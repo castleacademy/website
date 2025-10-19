@@ -15,9 +15,9 @@ const EllipseLayer = ({
     // whileInView={{ opacity: 0.5, y: 0 }}
     // viewport={{ once: false, amount: 0.3 }}
     // transition={{
-    //     duration: 1,
-    //     delay,
-    //     ease: 'easeOut',
+    //   duration: 1,
+    //   delay,
+    //   ease: "easeOut",
     // }}
     className={`absolute left-1/2 aspect-square w-[105vw] -translate-x-1/2 ${blur ? "blur-3xl" : ""} ${className}`}
     style={{
