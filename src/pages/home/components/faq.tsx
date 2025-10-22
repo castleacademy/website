@@ -38,9 +38,14 @@ const FAQ_CONTENT = [
 
 export function AccordionFAQ() {
   return (
-    <div className="flex w-full gap-x-6 md:flex-row flex-col items-start justify-center container">
+    <div className="flex w-full gap-x-6 md:flex-row flex-col items-start justify-center">
       {FAQ_CONTENT.map((column, columnIndex) => (
-        <Accordion type="single" collapsible className="w-lg" key={columnIndex}>
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full lg:w-lg"
+          key={columnIndex}
+        >
           {column.map(({ question, answer }, itemIndex) => (
             <AccordionItem
               value={`item-${columnIndex}-${itemIndex}`}
