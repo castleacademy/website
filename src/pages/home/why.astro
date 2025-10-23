@@ -1,28 +1,33 @@
 ---
+import Card from "~/components/card/card.astro";
+
 const WHY_CONTENT = [
   {
-    title: "Personalized Learning",
+    title: "Dimulai dari Pilihanmu",
     content:
-      "Castle Academy tailors its curriculum to each student's unique learning style and pace.",
+      "Bandingkan ratusan mentor terverifikasi dan temukan gaya mengajar untukmu.",
+    imageSrc: "/src/assets/home/1.png",
   },
   {
-    title: "Expert Instructors",
+    title: "Belajar dengan Ahli",
     content:
-      "Our instructors are industry experts who bring real-world experience to the classroom.",
+      "Dapatkan pengalaman belajar dari mentor berpengalaman di bidangnya masing-masing.",
+    imageSrc: "/src/assets/home/2.png",
   },
   {
-    title: "Interactive Learning",
+    title: "Fleksibel dan Interaktif",
     content:
-      "Castle Academy uses interactive tools and technologies to engage students and enhance learning.",
+      "Sesuaikan jadwal belajar dan nikmati pengalaman belajar yang interaktif dan menyenangkan.",
+    imageSrc: "/src/assets/home/3.png",
   },
 ];
 ---
 
 <section class="container">
-  <div class="min-h-screen flex items-center justify-center flex-col">
+  <div class="flex items-center justify-center flex-col py-26">
     <div class="mb-12 flex flex-col items-center">
       <h2 class="text-2xl lg:text-3xl font-bold">
-        Kenapa<span class="italic text-primary-600 font-serif">
+        Kenapa<span class="italic text-secondary-600 font-serif">
           Castle Academy
         </span> Berbeda?
       </h2>
@@ -31,14 +36,16 @@ const WHY_CONTENT = [
       </p>
     </div>
     <div
-      class="flex flex-wrap items-center justify-center lg:grid lg:grid-cols-3 gap-8"
+      class="flex flex-wrap items-center justify-center lg:grid lg:grid-cols-3 gap-8 max-w-[972px]"
     >
       {
         WHY_CONTENT.map((item, index) => (
-          <div class="bg-neutral-100 rounded-2xl shadow-md p-6 border border-neutral-200">
-            <h3 class="text-xl lg:text-2xl font-bold">{item.title}</h3>
-            <p class="text-base lg:text-xl">{item.content}</p>
-          </div>
+          <Card 
+            title={item.title} 
+            content={item.content}
+            imageSrc={item.imageSrc}
+            placeholder="Castle Academy"
+          />
         ))
       }
     </div>
