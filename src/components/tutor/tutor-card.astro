@@ -1,0 +1,31 @@
+---
+export interface Props {
+  class?: string;
+  backgroundImage?: string;
+  rounded?: string; // rounded luar
+  insetRounded?: string; // rounded inset, opsional
+}
+
+/**
+ * Cara ngatur rounded-nya:
+ * - "rounded" untuk rounded luar, default: "rounded-[8px]"
+ * - "insetRounded" untuk rounded shadow inset, default: sama kek rounded luar
+ * - override lewat className juga bisa kalau mau (tailwind utility last wins)
+ */
+const {
+  class: className = "",
+  backgroundImage,
+  rounded = "rounded-[16px]",
+  insetRounded = "rounded-[10px]",
+} = Astro.props;
+
+const shadowRounded = insetRounded ?? rounded;
+---
+
+<div 
+  class={`tutor-card group relative overflow-hidden transition-all duration-300 ${rounded} ${className}`}
+  style={backgroundImage ? `background-image: url('${backgroundImage}'); background-size: cover; background-position: center;` : ''}
+>
+  <div class={`absolute inset-0 ${shadowRounded} shadow-[inset_-8px_-8px_0_0_rgba(0,0,0,0.2),inset_8px_8px_0_0_rgba(255,255,255,0.3)] pointer-events-none z-10`}></div>
+  <slot />
+</div>

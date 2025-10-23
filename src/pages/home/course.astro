@@ -25,8 +25,8 @@ const courses = await contentfulClient.getEntries<CourseSkeleton>({
 });
 ---
 
-<section class="container py-14">
-  <div class="flex flex-col items-center text-center mb-12">
+<section class="container bg-amber-300">
+  <div class="flex flex-col items-center text-center mb-12 mt-26">
     <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold">
       Mulai perjalanan Belajarmu di Sini
     </h2>
@@ -37,7 +37,7 @@ const courses = await contentfulClient.getEntries<CourseSkeleton>({
       </Button>
     </a>
   </div>
-  <div class="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4 pb-26">
     {courses.items.map((course) => (
       <CourseCard>
         <CourseCardImage />

@@ -1,0 +1,118 @@
+---
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="container py-16">
+    <h1 class="text-4xl font-bold text-center mb-12">Custom Color Palette</h1>
+    
+    <!-- Neutral Colors -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Neutral Colors</h2>
+      <div class="grid grid-cols-5 gap-4">
+        {[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((shade) => (
+          <div class="text-center">
+            <div class={`w-full h-20 bg-neutral-${shade} border border-neutral-300 rounded-lg mb-2`}></div>
+            <p class="text-sm font-medium">neutral-{shade}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Primary Colors -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Primary Colors (Blue/Cyan)</h2>
+      <div class="grid grid-cols-5 gap-4">
+        {[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((shade) => (
+          <div class="text-center">
+            <div class={`w-full h-20 bg-primary-${shade} border border-neutral-300 rounded-lg mb-2`}></div>
+            <p class="text-sm font-medium">primary-{shade}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Secondary Colors -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Secondary Colors (Indigo/Periwinkle)</h2>
+      <div class="grid grid-cols-5 gap-4">
+        {[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((shade) => (
+          <div class="text-center">
+            <div class={`w-full h-20 bg-secondary-${shade} border border-neutral-300 rounded-lg mb-2`}></div>
+            <p class="text-sm font-medium">secondary-{shade}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tertiary Colors -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Tertiary Colors (Teal/Green-Blue)</h2>
+      <div class="grid grid-cols-5 gap-4">
+        {[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000].map((shade) => (
+          <div class="text-center">
+            <div class={`w-full h-20 bg-tertiary-${shade} border border-neutral-300 rounded-lg mb-2`}></div>
+            <p class="text-sm font-medium">tertiary-{shade}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Usage Examples -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Usage Examples</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card Example -->
+        <div class="bg-neutral-100 border border-neutral-200 rounded-lg p-6">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-2">Card Example</h3>
+          <p class="text-neutral-600 mb-4">This card uses neutral colors for a clean, professional look.</p>
+          <button class="bg-primary-600 text-white px-4 py-2 rounded hover:bg-primary-700 transition-colors">
+            Primary Button
+          </button>
+        </div>
+
+        <!-- Alert Example -->
+        <div class="bg-tertiary-100 border border-tertiary-300 rounded-lg p-6">
+          <h3 class="text-lg font-semibold text-tertiary-900 mb-2">Info Alert</h3>
+          <p class="text-tertiary-700 mb-4">This uses tertiary colors for informational content.</p>
+          <button class="bg-tertiary-600 text-white px-4 py-2 rounded hover:bg-tertiary-700 transition-colors">
+            Tertiary Button
+          </button>
+        </div>
+
+        <!-- Feature Example -->
+        <div class="bg-secondary-100 border border-secondary-300 rounded-lg p-6">
+          <h3 class="text-lg font-semibold text-secondary-900 mb-2">Feature Card</h3>
+          <p class="text-secondary-700 mb-4">This uses secondary colors for feature highlights.</p>
+          <button class="bg-secondary-600 text-white px-4 py-2 rounded hover:bg-secondary-700 transition-colors">
+            Secondary Button
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Combinations -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-8">Color Combinations</h2>
+      <div class="space-y-6">
+        <!-- Primary + Neutral -->
+        <div class="bg-primary-600 text-white p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Primary Background</h3>
+          <p class="text-primary-100">This combination uses primary-600 background with primary-100 text for excellent contrast.</p>
+        </div>
+
+        <!-- Secondary + Neutral -->
+        <div class="bg-secondary-600 text-white p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Secondary Background</h3>
+          <p class="text-secondary-100">This combination uses secondary-600 background with secondary-100 text.</p>
+        </div>
+
+        <!-- Tertiary + Neutral -->
+        <div class="bg-tertiary-600 text-white p-6 rounded-lg">
+          <h3 class="text-xl font-bold mb-2">Tertiary Background</h3>
+          <p class="text-tertiary-100">This combination uses tertiary-600 background with tertiary-100 text.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
