@@ -1,0 +1,23 @@
+---
+import { Button } from "~/components/ui/button";
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="min-h-screen flex items-center justify-center flex-col gap-3">
+    <h1 aria-hidden="true" aria-label="Pusat Bantuan"></h1>
+    <p class="font-bold text-4xl">Berkolaborasi dengan</p>
+    <p class="font-bold text-5xl font-serif italic text-secondary-600">
+      Castle Academy
+    </p>
+    <p class="max-w-3xl text-center text-pretty text-xl">
+      Tertarik berkolaborasi dengan platform atau komunitas tutor-siswa kami?
+      Kami siap berdiskusi. Hubungi kami, mari bangun sesuatu yang bermakna!
+    </p>
+    <div class="mt-8 mb-18">
+      <a href="mailto:info@castleacademy.com">
+        <Button variant={"embossed"}> Hubungi kami melalui email! </Button>
+      </a>
+    </div>
+  </main>
+</Layout>
