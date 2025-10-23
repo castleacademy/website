@@ -1,4 +1,7 @@
 ---
+import { Button } from '../ui/button';
+import { ChevronRightIcon } from 'lucide-react';
+
 export interface Props {
   courseId: string;
 }
@@ -6,8 +9,13 @@ export interface Props {
 const { courseId } = Astro.props;
 ---
 
-<button 
-  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+<div 
+  class="absolute bottom-0 right-0 size-auto cursor-pointer flex items-center justify-center"
   onclick={`document.getElementById('dialog-${courseId}').showModal()`}
+  role="button"
+  tabindex="0"
 >
-</button>
+  <Button size="icon-lg" variant="outline-blue">
+    <ChevronRightIcon className="size-5" strokeWidth={2} />
+  </Button>
+</div>

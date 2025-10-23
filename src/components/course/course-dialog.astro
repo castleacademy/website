@@ -8,7 +8,7 @@ export interface Props {
 const { courseId, courseName, courseDescription = "Detail informasi kursus akan ditampilkan di sini" } = Astro.props;
 ---
 
-<dialog id={`dialog-${courseId}`} class="backdrop:bg-black/50 bg-white rounded-lg p-6 max-w-md">
+<dialog id={`dialog-${courseId}`} class="backdrop:bg-black/50 bg-white rounded-lg p-6 max-w-md top-0 right-0 bottom-0 left-0 m-auto">
   <div class="flex flex-col gap-4">
     <div class="flex justify-between items-start">
       <h2 class="text-lg font-semibold">{courseName}</h2>

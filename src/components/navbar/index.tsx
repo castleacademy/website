@@ -25,7 +25,7 @@ export const Navbar = () => {
         "fixed inset-x-0 z-50 flex items-center justify-between rounded-[10px] px-6 py-3 transition-all duration-500 ease-out",
         "top-3 mx-3 sm:top-8 sm:mx-8 lg:right-8 lg:left-8 lg:mx-auto lg:max-w-[1536px]",
         isScrolled
-          ? "mx-5 shadow-xl sm:mx-7 md:px-6 lg:mx-auto lg:max-w-[1300px] bg-white"
+          ? "mx-5 shadow-lg sm:mx-7 md:px-4 lg:mx-auto lg:max-w-[1262.5px] bg-white outline"
           : "bg-transparent",
         isMobileMenuOpen && "rounded-t-[10px] rounded-b-[0px] bg-white"
       )}

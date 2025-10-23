@@ -1,7 +1,7 @@
 const NAV_ITEMS = [
-  { label: "Katalog Kursus", href: "#" },
-  { label: "Tutor-Tutor", href: "#" },
-  { label: "Pusat Bantuan", href: "#" },
+  { label: "Katalog Kursus", href: "/kursus" },
+  { label: "Tutor-Tutor", href: "/tutor" },
+  { label: "Pusat Bantuan", href: "/bantuan" },
 ];
 
 export const NavLinks = () => {
