@@ -3,8 +3,17 @@ import type { EntryFieldTypes } from "contentful";
 export type TutorSkeleton = {
   contentTypeId: "tutor";
   fields: {
-    name: EntryFieldTypes.Text;
+    name: EntryFieldTypes.Symbol;
+    picture: {
+      fields: {
+        file: {
+          url: string;
+        };
+      };
+    };
     rating: EntryFieldTypes.Number;
+    specialization: EntryFieldTypes.Symbol;
+    exp: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
   };
 };
 

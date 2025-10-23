@@ -4,7 +4,7 @@ import { cn } from "~/lib/utils";
 
 const MOBILE_NAV_ITEMS = [
   { label: "Katalog Kursus", href: "#" },
-  { label: "Tutor-Tutor", href: "#" },
+  { label: "Tutor-Tutor", href: "/tutor" },
   { label: "Pusat Bantuan", href: "#" },
 ];
 
@@ -20,7 +20,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         "absolute top-full right-0 left-0 bg-white rounded-b-[10px] shadow-xl transition-all duration-300 ease-in-out lg:hidden",
         isOpen
           ? "translate-y-0 opacity-100"
-          : "pointer-events-none -translate-y-2 opacity-0",
+          : "pointer-events-none -translate-y-2 opacity-0"
       )}
     >
       <nav className="flex flex-col p-4 space-y-2">

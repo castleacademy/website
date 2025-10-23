@@ -1,0 +1,140 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import StarRating from "~/components/ui/star-rating.tsx";
+import TutorCard from "~/components/tutor/tutor-card.astro";
+import TutorCardContent from "~/components/tutor/tutor-card-content.astro";
+import { contentfulClient } from "~/lib/contentful";
+import type { TutorSkeleton } from "~/lib/types";
+
+const tutors = await contentfulClient.getEntries<TutorSkeleton>({
+  content_type: "tutor",
+});
+---
+
+<Layout>
+  <section class="container min-h-screen">
+    <div class="flex flex-col items-center text-center mb-12 mt-28">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
+        Semua Tutor
+      </h1>
+      <p class="text-gray-600 mb-8 max-w-2xl">
+        Temukan tutor terbaik yang sesuai dengan kebutuhan belajar Anda
+      </p>
+      
+      <div class="flex w-full items-center gap-2 rounded-[10px] border px-3 py-2">
+        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Cari tutor atau spesialisasi..."
+          class="font-pt-sans w-full text-base focus:outline-none"
+        />
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-28">
+      {tutors.items.map((tutor) => (
+        <TutorCard backgroundImage={tutor.fields.image && 'fields' in tutor.fields.image ? tutor.fields.image.fields?.file?.url || "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop" : "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop"} class="h-96">
+          <TutorCardContent>
+            <div class="flex items-start justify-between mb-1.5">
+              <h3 class="text-xl font-bold text-gray-900 line-clamp-2">{tutor.fields.name}</h3>
+              <div class="flex-shrink-0">
+                <StarRating 
+                  value={tutor.fields.rating || 4.5} 
+                  readOnly 
+                  size={18}
+                  className="align-middle"
+                />
+              </div>
+            </div>
+            
+            <div class="border-t-2 border-gray-200 pt-1.5">
+              <p class="text-xs text-gray-600">Spesialisasi:</p>
+              <p class="text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
+            </div>
+            
+            {tutor.fields.subjects && tutor.fields.subjects.length > 0 && (
+              <div class="mt-2">
+                <p class="text-xs text-gray-600 mb-1">Mata Pelajaran:</p>
+                <div class="flex flex-wrap gap-1">
+                  {tutor.fields.subjects.slice(0, 3).map((subject) => (
+                    <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                      {subject}
+                    </span>
+                  ))}
+                  {tutor.fields.subjects.length > 3 && (
+                    <span class="text-xs text-gray-500">
+                      +{tutor.fields.subjects.length - 3} lainnya
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+          </TutorCardContent>
+        </TutorCard>
+      ))}
+    </div>
+    
+    <!-- No Results Message -->
+    <div id="no-results" class="hidden text-center py-12">
+      <p class="text-gray-500 text-lg">Tidak ada tutor yang ditemukan untuk pencarian Anda.</p>
+    </div>
+  </section>
+
+  <script define:vars={{ tutorsData: tutors.items.map(tutor => ({
+    id: tutor.sys.id,
+    name: tutor.fields.name,
+    specialization: tutor.fields.specialization,
+    rating: tutor.fields.rating,
+    subjects: tutor.fields.subjects || []
+  })) }}>
+    // Initialize search functionality
+    const searchInput = document.getElementById('search-input');
+    const tutorsGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-4');
+    const noResults = document.getElementById('no-results');
+    const tutorCards = Array.from(tutorsGrid.children);
+
+    // Add data attributes to tutor cards for filtering
+    tutorCards.forEach((card, index) => {
+      const tutorData = tutorsData[index];
+      if (tutorData) {
+        card.setAttribute('data-tutor-name', tutorData.name || '');
+        card.setAttribute('data-tutor-specialization', tutorData.specialization || '');
+        card.setAttribute('data-tutor-subjects', tutorData.subjects.join(' ').toLowerCase() || '');
+      }
+    });
+
+    function filterTutors(searchTerm) {
+      const filteredCards = tutorCards.filter(card => {
+        const tutorName = card.getAttribute('data-tutor-name')?.toLowerCase() || '';
+        const specialization = card.getAttribute('data-tutor-specialization')?.toLowerCase() || '';
+        const subjects = card.getAttribute('data-tutor-subjects') || '';
+        const search = searchTerm.toLowerCase();
+        
+        return tutorName.includes(search) || specialization.includes(search) || subjects.includes(search);
+      });
+
+      if (filteredCards.length === 0) {
+        noResults.classList.remove('hidden');
+        tutorsGrid.classList.add('hidden');
+      } else {
+        noResults.classList.add('hidden');
+        tutorsGrid.classList.remove('hidden');
+        
+        // Hide all cards first, then show filtered ones
+        tutorCards.forEach(card => card.classList.add('hidden'));
+        filteredCards.forEach(card => card.classList.remove('hidden'));
+      }
+    }
+
+    // Add event listener to search input
+    searchInput.addEventListener('input', (e) => {
+      filterTutors(e.target.value);
+    });
+
+    // Initialize with all tutors visible
+    filterTutors('');
+  </script>
+</Layout>
