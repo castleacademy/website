@@ -1,0 +1,19 @@
+---
+import { ChevronRightIcon } from 'lucide-react';
+import { Button } from '../ui/button';
+
+export interface Props {
+  class?: string;
+}
+
+const { 
+  class: className = "" 
+} = Astro.props;
+
+---
+
+<button class={`absolute bottom-0 right-0 size-12 bg-primary-600 aspect-square ${className}`}>
+  <Button size={"icon"} variant={"outline"}>
+    <ChevronRightIcon className="size-4 lg:size-5" />
+  </Button>
+</button>

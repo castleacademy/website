@@ -1,0 +1,36 @@
+---
+import { TagIcon } from 'lucide-react';
+
+export interface Props {
+  price: number | string;
+  currency?: string;
+  originalPrice?: number | string;
+  class?: string;
+}
+
+const { 
+  price, 
+  currency = "Rp",
+  originalPrice,
+  class: className = "" 
+} = Astro.props;
+
+const formatPrice = (price: number | string) => {
+  if (typeof price === 'number') {
+    return price.toLocaleString('id-ID');
+  }
+  return price;
+};
+---
+
+<div class={`text-sm lg:text-lg flex items-center gap-2 font-semibold mb-0 mt-auto ${className}`}>
+  <TagIcon className="size-4 lg:size-5" />
+  <span>
+    {currency}{formatPrice(price)}
+  </span>
+  {originalPrice && (
+    <span class="line-throughmr-2">
+      {currency}{formatPrice(originalPrice)}
+    </span>
+  )}
+</div>

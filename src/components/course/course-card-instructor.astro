@@ -1,0 +1,40 @@
+---
+import { StarRating } from "~/components/ui/star-rating";
+
+export interface Props {
+  name: string;
+  rating?: number;
+  avatarSrc?: string;
+  class?: string;
+}
+
+const { 
+  name, 
+  rating, 
+  avatarSrc,
+  class: className = "" 
+} = Astro.props;
+---
+
+<div class={`flex items-center ${className}`}>
+  <div class="aspect-square bg-tertiary-200 mr-5 rounded-full w-12 flex items-center justify-center">
+    {avatarSrc ? (
+      <img src={avatarSrc} alt={name} class="w-full h-full rounded-full object-cover" />
+    ) : (
+      <span class="text-xs font-semibold">{name.charAt(0)}</span>
+    )}
+  </div>
+  <div>
+    <p class="text-sm sm:text-base lg:text-lg font-medium">{name}</p>
+    {rating && (
+      <div class="flex items-center gap-1 mt-1">
+        <StarRating 
+          value={rating} 
+          readOnly 
+          size={20}
+          className="align-middle"
+        />
+      </div>
+    )}
+  </div>
+</div>

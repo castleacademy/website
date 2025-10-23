@@ -1,0 +1,13 @@
+---
+export interface Props {
+  courseId: string;
+}
+
+const { courseId } = Astro.props;
+---
+
+<button 
+  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+  onclick={`document.getElementById('dialog-${courseId}').showModal()`}
+>
+</button>

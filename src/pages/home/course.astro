@@ -1,0 +1,71 @@
+---
+import { ArrowRightIcon } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import CourseCard from "~/components/course/course-card.astro";
+import CourseCardImage from "~/components/course/course-card-image.astro";
+import CourseCardContent from "~/components/course/course-card-content.astro";
+import CourseCardHeader from "~/components/course/course-card-header.astro";
+import CourseCardInstructor from "~/components/course/course-card-instructor.astro";
+import CourseCardFooter from "~/components/course/course-card-footer.astro";
+
+import { contentfulClient } from "~/lib/contentful";
+import type { CourseSkeleton} from "~/lib/types";
+import { Background } from "~/components/background";
+import CourseCardButton from "~/components/course/course-card-button.astro";
+import CourseDialog from "~/components/course/course-dialog.astro";
+import CourseDialogTrigger from "~/components/course/course-dialog-trigger.astro";
+
+function getTutor(link: any): { name?: string; rating?: number } {
+  const anyLink = link as { fields?: { name?: string; rating?: number } } | undefined;
+  return anyLink?.fields ?? {};
+}
+
+const courses = await contentfulClient.getEntries<CourseSkeleton>({
+  content_type: "course",
+});
+---
+
+<section class="container py-14">
+  <div class="flex flex-col items-center text-center mb-12">
+    <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold">
+      Mulai perjalanan Belajarmu di Sini
+    </h2>
+    <a class="mt-3" href="/bantuan">
+      <Button variant="embossed">
+        <span class="-translate-y-0.25"> Lihat Semua Kursus </span>
+        <ArrowRightIcon />
+      </Button>
+    </a>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4">
+    {courses.items.map((course) => (
+      <CourseCard>
+        <CourseCardImage />
+        <CourseCardContent>
+          <CourseCardHeader 
+            title={course.fields.name} 
+            badge="Populer" 
+            badgeVariant="popular" 
+          />
+          <div class="flex flex-col justify-between items-stretch flex-1 relative">
+            {(() => { const tutor = getTutor(course.fields.tutor); return (
+              <CourseCardInstructor 
+                name={tutor.name || "Instructor"} 
+                rating={tutor.rating || 4.5}
+              />
+            ); })()}
+            <CourseCardFooter price={course.fields.price} />
+            <CourseDialogTrigger courseId={course.sys.id} />
+            <CourseDialog 
+              courseId={course.sys.id} 
+              courseName={course.fields.name}
+            >
+              {/* Content akan diisi nanti */}
+              <p>Konten dialog akan diisi sesuai kebutuhan</p>
+            </CourseDialog>
+          </div>
+        </CourseCardContent>
+      </CourseCard>
+    ))}
+  </div>
+</section>

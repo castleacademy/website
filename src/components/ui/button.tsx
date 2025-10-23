@@ -33,7 +33,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function Button({
@@ -54,7 +54,7 @@ function Button({
       ? {
           borderRadius: "8px",
           background:
-            "linear-gradient(to bottom right, rgb(59 130 246), rgb(37 99 235))",
+            "linear-gradient(to bottom right, var(--color-secondary-600), var(--color-secondary-700))",
           // boxShadow: "0 4px 4px 2px rgba(0, 0, 0, 0.20)",
           position: "relative" as const,
           overflow: "hidden",
