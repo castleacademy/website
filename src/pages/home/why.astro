@@ -1,0 +1,46 @@
+---
+const WHY_CONTENT = [
+  {
+    title: "Personalized Learning",
+    content:
+      "Castle Academy tailors its curriculum to each student's unique learning style and pace.",
+  },
+  {
+    title: "Expert Instructors",
+    content:
+      "Our instructors are industry experts who bring real-world experience to the classroom.",
+  },
+  {
+    title: "Interactive Learning",
+    content:
+      "Castle Academy uses interactive tools and technologies to engage students and enhance learning.",
+  },
+];
+---
+
+<section class="container">
+  <div class="min-h-screen flex items-center justify-center flex-col">
+    <div class="mb-12 flex flex-col items-center">
+      <h2 class="text-2xl lg:text-3xl font-bold">
+        Kenapa<span class="italic text-primary-600 font-serif">
+          Castle Academy
+        </span> Berbeda?
+      </h2>
+      <p class="text-base lg:text-xl">
+        Caramu merancang sendiri jalur sukses belajarmu.
+      </p>
+    </div>
+    <div
+      class="flex flex-wrap items-center justify-center lg:grid lg:grid-cols-3 gap-8"
+    >
+      {
+        WHY_CONTENT.map((item, index) => (
+          <div class="bg-neutral-100 rounded-2xl shadow-md p-6 border border-neutral-200">
+            <h3 class="text-xl lg:text-2xl font-bold">{item.title}</h3>
+            <p class="text-base lg:text-xl">{item.content}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

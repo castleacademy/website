@@ -8,6 +8,55 @@
 @theme {
   --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", sans-serif;
   --font-dm-serif-text: "DM Serif Text", serif;
+
+  /* Custom Color Palette */
+  /* Neutral Colors */
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #e6e6e6;
+  --color-neutral-300: #cecece;
+  --color-neutral-400: #b5b5b5;
+  --color-neutral-500: #9d9d9d;
+  --color-neutral-600: #848484;
+  --color-neutral-700: #6c6c6c;
+  --color-neutral-800: #535353;
+  --color-neutral-900: #3b3b3b;
+  --color-neutral-1000: #000000;
+
+  /* Primary Colors (Blue/Cyan) */
+  --color-primary-100: #d7f4fe;
+  --color-primary-200: #b0e9fd;
+  --color-primary-300: #88dffc;
+  --color-primary-400: #60d4fb;
+  --color-primary-500: #39c9fa;
+  --color-primary-600: #11bef9;
+  --color-primary-700: #06aae2;
+  --color-primary-800: #0591c0;
+  --color-primary-900: #04789f;
+  --color-primary-1000: #035e7d;
+
+  /* Secondary Colors (Indigo/Periwinkle) */
+  --color-secondary-100: #c6d5ec;
+  --color-secondary-200: #aac0e3;
+  --color-secondary-300: #8dabda;
+  --color-secondary-400: #7196d1;
+  --color-secondary-500: #5581c7;
+  --color-secondary-600: #3d6dba;
+  --color-secondary-700: #335d9d;
+  --color-secondary-800: #2a4c81;
+  --color-secondary-900: #213c66;
+  --color-secondary-1000: #182c4a;
+
+  /* Tertiary Colors (Teal/Green-Blue) */
+  --color-tertiary-100: #dfeef2;
+  --color-tertiary-200: #c0dee5;
+  --color-tertiary-300: #a0cdd8;
+  --color-tertiary-400: #81bdcb;
+  --color-tertiary-500: #61acbd;
+  --color-tertiary-600: #4798ab;
+  --color-tertiary-700: #3e8595;
+  --color-tertiary-800: #35717f;
+  --color-tertiary-900: #2c5e69;
+  --color-tertiary-1000: #234a54;
 }
 
 @theme inline {
