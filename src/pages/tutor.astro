@@ -35,11 +35,11 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-28">
-      {tutors.items.map((tutor) => (
-        <TutorCard backgroundImage={tutor.fields.image && 'fields' in tutor.fields.image ? tutor.fields.image.fields?.file?.url || "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop" : "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop"} class="h-96">
+      {(tutors.items as any[]).slice(0, 4).map((tutor) => (
+        <TutorCard backgroundImage={tutor.fields?.picture?.fields?.file?.url} class="h-96">
           <TutorCardContent>
             <div class="flex items-start justify-between mb-1.5">
-              <h3 class="text-xl font-bold text-gray-900 line-clamp-2">{tutor.fields.name}</h3>
+              <h3 class="text-xl font-bold text-gray-900 line-clamp-2">{tutor.fields?.name}</h3>
               <div class="flex-shrink-0">
                 <StarRating 
                   value={tutor.fields.rating || 4.5} 
@@ -54,24 +54,6 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
               <p class="text-xs text-gray-600">Spesialisasi:</p>
               <p class="text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
             </div>
-            
-            {tutor.fields.subjects && tutor.fields.subjects.length > 0 && (
-              <div class="mt-2">
-                <p class="text-xs text-gray-600 mb-1">Mata Pelajaran:</p>
-                <div class="flex flex-wrap gap-1">
-                  {tutor.fields.subjects.slice(0, 3).map((subject) => (
-                    <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                      {subject}
-                    </span>
-                  ))}
-                  {tutor.fields.subjects.length > 3 && (
-                    <span class="text-xs text-gray-500">
-                      +{tutor.fields.subjects.length - 3} lainnya
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
           </TutorCardContent>
         </TutorCard>
       ))}
@@ -88,7 +70,6 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
     name: tutor.fields.name,
     specialization: tutor.fields.specialization,
     rating: tutor.fields.rating,
-    subjects: tutor.fields.subjects || []
   })) }}>
     // Initialize search functionality
     const searchInput = document.getElementById('search-input');
