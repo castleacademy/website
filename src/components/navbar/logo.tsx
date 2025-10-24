@@ -14,7 +14,7 @@ export const Logo = ({ isScrolled }: LogoProps) => {
       >
         {/* Castle Academy */}
         <img
-          src="/src/assets/logo.svg"
+          src="/assets/logo.svg"
           alt="Castle Academy"
           className="w-auto h-11"
           style={{
