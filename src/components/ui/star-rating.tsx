@@ -6,7 +6,8 @@ type StarRatingProps = {
   onChange?: (nextValue: number) => void;
   readOnly?: boolean;
   className?: string;
-  size?: number; // px
+  size?: number; // px - fallback for non-responsive sizing
+  responsiveSize?: string; // tailwind responsive size classes (e.g., "w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6")
   fullColorClassName?: string; // tailwind classes for filled stars
   emptyColorClassName?: string; // tailwind classes for empty stars
   halfColorClassName?: string; // tailwind classes for half stars (foreground)
@@ -20,23 +21,28 @@ const clampToPrecision = (raw: number, precision: number, min = 0, max = 5) => {
   return steps * precision;
 };
 
-const StarIcon: React.FC<{ size: number; className?: string }> = ({
-  size,
-  className,
-}) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    stroke="currentColor"
-    strokeWidth="1"
-    aria-hidden="true"
-    className={className}
-  >
-    <path d="M12 2.75l2.905 5.89 6.5.945-4.703 4.582 1.11 6.478L12 17.98 6.188 20.645l1.11-6.478L2.594 9.585l6.5-.945L12 2.75z" />
-  </svg>
-);
+const StarIcon: React.FC<{
+  className?: string;
+  size?: number;
+  responsiveSize?: string;
+}> = ({ className, size, responsiveSize }) => {
+  const sizeStyle = responsiveSize ? {} : { width: size, height: size };
+  const responsiveClasses = responsiveSize || "";
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="1"
+      aria-hidden="true"
+      className={cn(className, responsiveClasses)}
+      style={sizeStyle}
+    >
+      <path d="M12 2.75l2.905 5.89 6.5.945-4.703 4.582 1.11 6.478L12 17.98 6.188 20.645l1.11-6.478L2.594 9.585l6.5-.945L12 2.75z" />
+    </svg>
+  );
+};
 
 export const StarRating: React.FC<StarRatingProps> = ({
   value,
@@ -44,6 +50,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
   readOnly = false,
   className,
   size = 20,
+  responsiveSize,
   fullColorClassName = "text-yellow-400 stroke-black stroke-1",
   emptyColorClassName = "text-gray-300 dark:text-gray-600 stroke-black stroke-1",
   halfColorClassName = "text-yellow-400 stroke-black stroke-1",
@@ -76,46 +83,143 @@ export const StarRating: React.FC<StarRatingProps> = ({
         aria-hidden={isInteractive ? true : undefined}
       >
         {/* Empty base */}
-        <StarIcon size={size} className={cn(emptyColorClassName)} />
+        <StarIcon
+          className={cn(emptyColorClassName)}
+          size={size}
+          responsiveSize={responsiveSize}
+        />
 
         {/* Filled or half overlay */}
         {isFull ? (
           <span className="absolute inset-0">
-            <StarIcon size={size} className={cn(fullColorClassName)} />
+            <StarIcon
+              className={cn(fullColorClassName)}
+              size={size}
+              responsiveSize={responsiveSize}
+            />
           </span>
         ) : isHalf ? (
           <span
             className="absolute inset-0 overflow-hidden"
             style={{ width: "50%" }}
           >
-            <StarIcon size={size} className={cn(halfColorClassName)} />
+            <StarIcon
+              size={size}
+              className={cn(halfColorClassName)}
+              responsiveSize={responsiveSize}
+            />
           </span>
         ) : null}
       </span>
     );
   });
 
+  // MOBILE-only display: just 1 bintang & rating number (default: mobile = <sm, tailwind breakpoint)
+  // Desktop/tablet: stars as usual
+  // Uses Tailwind "sm:" for responsive visibility
+
+  // (default: gap is 1. adjust as needed)
   if (!isInteractive) {
     return (
       <div
         className={cn("inline-flex items-center gap-1", className)}
         aria-label={`${normalized} dari 5 bintang`}
       >
-        {stars}
+        {/* Mobile: only 1 star and number */}
+        <div className="flex items-center gap-0.5 sm:hidden">
+          <span className="relative inline-flex">
+            {/* Handle full/half/empty for only the first star */}
+            {(() => {
+              const isFull = normalized >= 1;
+              const isHalf = !isFull && normalized >= 0.5;
+              return (
+                <>
+                  <StarIcon
+                    className={cn(emptyColorClassName)}
+                    size={size}
+                    responsiveSize={responsiveSize}
+                  />
+                  {isFull ? (
+                    <span className="absolute inset-0">
+                      <StarIcon
+                        className={cn(fullColorClassName)}
+                        size={size}
+                        responsiveSize={responsiveSize}
+                      />
+                    </span>
+                  ) : isHalf ? (
+                    <span
+                      className="absolute inset-0 overflow-hidden"
+                      style={{ width: "50%" }}
+                    >
+                      <StarIcon
+                        size={size}
+                        className={cn(halfColorClassName)}
+                        responsiveSize={responsiveSize}
+                      />
+                    </span>
+                  ) : null}
+                </>
+              );
+            })()}
+          </span>
+          <span className="text-xs font-semibold">{normalized.toFixed(1)}</span>
+        </div>
+        {/* Desktop/tablet: 5 stars as usual */}
+        <div className="hidden sm:inline-flex items-center gap-1">{stars}</div>
       </div>
     );
   }
 
-  // Interactive: 10 steps (0.5 precision), radio group for a11y
+  // Interactive mode (for rating): full control, not typically used on mobile
   const steps = Array.from({ length: 10 }, (_, i) => (i + 1) * 0.5);
   const groupName =
     name || id || `star-rating-${Math.random().toString(36).slice(2, 8)}`;
 
   return (
     <div className={cn("inline-flex items-center gap-1", className)}>
-      {/* Visual stars that reflect current value */}
       <div className="inline-flex items-center gap-1" aria-hidden>
-        {stars}
+        {/* Mobile: one bintang and number */}
+        <div className="flex items-center gap-0.5 sm:hidden">
+          <span className="relative inline-flex">
+            {(() => {
+              const isFull = normalized >= 1;
+              const isHalf = !isFull && normalized >= 0.5;
+              return (
+                <>
+                  <StarIcon
+                    className={cn(emptyColorClassName)}
+                    size={size}
+                    responsiveSize={responsiveSize}
+                  />
+                  {isFull ? (
+                    <span className="absolute inset-0">
+                      <StarIcon
+                        className={cn(fullColorClassName)}
+                        size={size}
+                        responsiveSize={responsiveSize}
+                      />
+                    </span>
+                  ) : isHalf ? (
+                    <span
+                      className="absolute inset-0 overflow-hidden"
+                      style={{ width: "50%" }}
+                    >
+                      <StarIcon
+                        size={size}
+                        className={cn(halfColorClassName)}
+                        responsiveSize={responsiveSize}
+                      />
+                    </span>
+                  ) : null}
+                </>
+              );
+            })()}
+          </span>
+          <span className="text-xs font-semibold">{normalized.toFixed(1)}</span>
+        </div>
+        {/* Desktop/tablet: 5 stars as usual */}
+        <div className="hidden sm:inline-flex items-center gap-1">{stars}</div>
       </div>
       {/* Accessible controls (screen-reader visible, visually minimal) */}
       <div

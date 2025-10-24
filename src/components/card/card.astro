@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 ---
 
-<div class={`flex flex-col gap-4 w-full h-full p-3 rounded-2xl bg-white shadow-[0_4px_4px_2px_rgba(0,0,0,0.20)] overflow-hidden ${className}`}>
+<div class={`flex flex-col gap-4 w-full h-full max-w-[350px] p-3 rounded-2xl bg-white shadow-[0_4px_4px_2px_rgba(0,0,0,0.20)] overflow-hidden ${className}`}>
   <!-- Image/Graphic Area -->
   <div class="bg-blue-50 flex justify-center items-center min-h-[140px] rounded-[8px] aspect-[284/194]">
     {imageSrc ? (

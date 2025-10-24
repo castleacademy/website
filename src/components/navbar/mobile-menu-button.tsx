@@ -14,7 +14,7 @@ export const MobileMenuButton = ({
     <Button
       variant="embossed"
       size="icon"
-      className="lg:hidden p-2 text-gray-700"
+      className="lg:hidden p-2 white"
       onClick={onClick}
       aria-label={isOpen ? "Close mobile menu" : "Open mobile menu"}
     >

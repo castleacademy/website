@@ -30,25 +30,25 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-26">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-8 mb-26">
       {(tutors.items as any[]).slice(0, 4).map((tutor) => (
-        <TutorCard backgroundImage={tutor.fields?.picture?.fields?.file?.url} class="h-96">
+        <TutorCard backgroundImage={tutor.fields?.picture?.fields?.file?.url} class="aspect-[264/327]">
           <TutorCardContent>
-            <div class="flex items-start justify-between mb-1.5">
-              <h3 class="text-xl font-bold text-gray-900 line-clamp-2">{tutor.fields?.name}</h3>
-              <div class="flex-shrink-0">
+            <div class="flex items-center justify-between mb-0.5 sm:mb-1.5">
+              <h3 class="text-[11px] sm:text-sm md:text-base lg:text-xl font-bold text-gray-900 line-clamp-1 sm:line-clamp-2">{tutor.fields?.name}</h3>
+              <div class="flex-shrink-0 -translate-y-0.5">
                 <StarRating 
                   value={tutor.fields.rating || 4.5} 
                   readOnly 
-                  size={18}
+                  responsiveSize="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
                   className="align-middle"
                 />
               </div>
             </div>
             
-            <div class="border-t-2 border-gray-200 pt-1.5">
-              <p class="text-xs text-gray-600">Spesialisasi:</p>
-              <p class="text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
+            <div class="border-t-1 sm:border-t-2 border-gray-200 pt-0.5 sm:pt-1.5">
+              <p class="text-[10px] sm:text-xs text-gray-600">Spesialisasi:</p>
+              <p class="text-[11px] sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
             </div>
           </TutorCardContent>
         </TutorCard>

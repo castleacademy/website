@@ -23,8 +23,8 @@ const formatPrice = (price: number | string) => {
 };
 ---
 
-<div class={`text-sm lg:text-lg flex items-center gap-2 font-semibold mb-2 ${className}`}>
-  <TagIcon className="size-4 lg:size-5" />
+<div class={`text-base lg:text-lg flex items-center gap-2 font-semibold mb-2 mt-3 ${className}`}>
+  <TagIcon className="size-5 lg:size-6" />
   <span>
     {currency}{formatPrice(price)}
   </span>

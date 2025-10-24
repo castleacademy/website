@@ -39,7 +39,7 @@ const courses = await contentfulClient.getEntries<CourseSkeleton>({
         </Button>
       </a>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 items-center justify-center gap-4">
       {courses.items.map((course) => (
         <CourseCard>
           <CourseCardImage />

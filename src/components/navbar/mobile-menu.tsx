@@ -19,7 +19,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       className={cn(
         "absolute top-full right-0 left-0 bg-white rounded-b-[10px] shadow-xl transition-all duration-300 ease-in-out lg:hidden",
         isOpen
-          ? "translate-y-0 opacity-100"
+          ? "translate-y-0 opacity-100 outline"
           : "pointer-events-none -translate-y-2 opacity-0"
       )}
     >

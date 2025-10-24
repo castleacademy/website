@@ -13,33 +13,33 @@ interface MentorCard {
 const mentors: MentorCard[] = [
   {
     id: 1,
-    name: "Joan",
+    name: "Joan Budiono",
     subject: "Matematika & Fisika SMA",
-    image: "/assets/home/tutor-1.jpg",
+    image: "/mentors/joan.jpg",
   },
   {
     id: 2,
-    name: "Sinta",
+    name: "Sinta Wiratama",
     subject: "Bahasa Inggris",
-    image: "/assets/home/tutor-1.jpg",
+    image: "/mentors/sinta.jpg",
   },
   {
     id: 3,
-    name: "Ahmad",
+    name: "Ahmad Rizky",
     subject: "Kimia",
-    image: "/assets/home/tutor-1.jpg",
+    image: "/mentors/rizky.jpg",
   },
   {
     id: 4,
-    name: "Livia",
+    name: "Livia Arifin",
     subject: "Ekonomi",
-    image: "/assets/home/tutor-1.jpg",
+    image: "/mentors/livia.jpg",
   },
   {
     id: 5,
-    name: "Raka",
+    name: "Raka Saputra",
     subject: "Biologi",
-    image: "/assets/home/tutor-1.jpg",
+    image: "/mentors/raka.jpg",
   },
 ];
 
@@ -59,26 +59,30 @@ const centerIndex = Math.floor(mentors.length / 2);
         <div
           class={`flex-shrink-0 transform transition-all duration-300 w-[180px] sm:w-[200px] md:w-[240px] lg:w-[260px] aspect-[264/327] ${scale} ${opacity} ${zIndex} ${translateX}`}
         >
-          <TutorCard backgroundImage={tutor.image} class="aspect-[264/327]">
-          <TutorCardContent>
-            <div class="flex items-center justify-between mb-0.5 sm:mb-1.5">
-              <h3 class="text-[11px] sm:text-sm md:text-base lg:text-xl font-bold text-gray-900 line-clamp-1 sm:line-clamp-2">{tutor.name}</h3>
-              <div class="flex-shrink-0 -translate-y-0.5">
-                <StarRating 
-                  value={4.5} 
-                  readOnly 
-                  responsiveSize="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
-                  className="align-middle"
-                />
+          <TutorCard backgroundImage={tutor.image} class="h-96">
+            <TutorCardContent>
+              <div class="flex items-start justify-between mb-1.5">
+                <h3 class="text-xl font-bold text-gray-900 line-clamp-2">
+                  {tutor.name}
+                </h3>
+                <div class="flex-shrink-0">
+                  <StarRating
+                    value={4.5}
+                    readOnly
+                    responsiveSize="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+                    className="align-middle"
+                  />
+                </div>
               </div>
-            </div>
-            
-            <div class="border-t-1 sm:border-t-2 border-gray-200 pt-0.5 sm:pt-1.5">
-              <p class="text-[10px] sm:text-xs text-gray-600">Spesialisasi:</p>
-              <p class="text-[11px] sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 line-clamp-1">{tutor.subject}</p>
-            </div>
-          </TutorCardContent>
-        </TutorCard>
+
+              <div class="border-t-2 border-gray-200 pt-1.5">
+                <p class="text-xs text-gray-600">Spesialisasi:</p>
+                <p class="text-lg font-semibold text-gray-900 line-clamp-1">
+                  {tutor.subject}
+                </p>
+              </div>
+            </TutorCardContent>
+          </TutorCard>
         </div>
       );
     })}

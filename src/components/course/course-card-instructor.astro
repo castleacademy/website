@@ -16,25 +16,30 @@ const {
 } = Astro.props;
 ---
 
-<div class={`flex items-center ${className}`}>
-  <div class="aspect-square bg-tertiary-200 mr-3 rounded-full w-12 flex items-center justify-center">
-    {avatarSrc ? (
-      <img src={avatarSrc} alt={name} class="w-full h-full rounded-full object-cover" />
-    ) : (
-      <span class="text-xs font-semibold">{name.charAt(0)}</span>
-    )}
+<div class={`flex items-start justify-between ${className}`}>
+  <div class="flex items-center">
+    <div class="aspect-square bg-tertiary-200 mr-1 sm:mr-3 rounded-full size-8 lg:size-12 flex items-center justify-center">
+      {avatarSrc ? (
+        <img src={avatarSrc} alt={name} class="w-full h-full rounded-full object-cover" />
+      ) : (
+        <span class="text-xs font-semibold">{name.charAt(0)}</span>
+      )}
+    </div>
+    <div>
+      <p class="text-sm sm:text-base lg:text-lg font-medium">{name}</p>
+      {rating && (
+        <div class="flex items-center gap-1 mt-1">
+          <StarRating 
+            value={rating} 
+            readOnly 
+            responsiveSize="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
+            className="align-middle"
+          />
+        </div>
+      )}
+    </div>
   </div>
-  <div>
-    <p class="text-sm sm:text-base lg:text-lg font-medium">{name}</p>
-    {rating && (
-      <div class="flex items-center gap-1 mt-1">
-        <StarRating 
-          value={rating} 
-          readOnly 
-          size={20}
-          className="align-middle"
-        />
-      </div>
-    )}
-  </div>
+  <p class="text-sm border-2 font-semibold px-2 py-1 items-center justify-center rounded md:hidden flex border-secondary-600 text-secondary-600">
+    <span class="-translate-y-0.25">Populer</span>
+  </p>
 </div>

@@ -14,7 +14,7 @@ const {
 } = Astro.props;
 ---
 
-<div class={`aspect-square lg:min-w-38 bg-secondary-200 mr-5 flex items-center justify-center rounded-[8px] ${className}`}>
+<div class={`aspect-square min-w-12 lg:min-w-38 bg-secondary-200 mr-5 flex items-center justify-center rounded-[8px] ${className}`}>
   {src ? (
     <img src={src} alt={alt} class="w-full h-full object-cover" />
   ) : (

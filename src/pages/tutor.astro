@@ -36,7 +36,7 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
       </div>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-28">
+    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-28">
       {(tutors.items as any[]).slice(0, 4).map((tutor) => (
         <TutorCard backgroundImage={tutor.fields?.picture?.fields?.file?.url} class="h-96">
           <TutorCardContent>
@@ -46,15 +46,15 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
                 <StarRating 
                   value={tutor.fields.rating || 4.5} 
                   readOnly 
-                  size={18}
+                  responsiveSize="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5"
                   className="align-middle"
                 />
               </div>
             </div>
             
             <div class="border-t-2 border-gray-200 pt-1.5">
-              <p class="text-xs text-gray-600">Spesialisasi:</p>
-              <p class="text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
+              <div></div>
+              <p class="text-xs sm:text-base lg:text-lg font-semibold text-gray-900 line-clamp-1">{tutor.fields.specialization}</p>
             </div>
           </TutorCardContent>
         </TutorCard>
