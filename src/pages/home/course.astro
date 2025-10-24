@@ -7,6 +7,7 @@ import CourseCardContent from "~/components/course/course-card-content.astro";
 import CourseCardHeader from "~/components/course/course-card-header.astro";
 import CourseCardInstructor from "~/components/course/course-card-instructor.astro";
 import CourseCardFooter from "~/components/course/course-card-footer.astro";
+import CourseBackground from "~/components/background/course-background.astro";
 
 import { contentfulClient } from "~/lib/contentful";
 import type { CourseSkeleton} from "~/lib/types";
@@ -23,8 +24,10 @@ const courses = await contentfulClient.getEntries<CourseSkeleton>({
 });
 ---
 
-<section class="bg-amber-300 py-26">
-  <div class="container">
+<section class="relative w-full py-26 overflow-hidden">
+  <CourseBackground />
+  
+  <div class="container relative z-10">
     <div class="flex flex-col items-center text-center mb-12">
       <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold">
         Mulai perjalanan Belajarmu di Sini

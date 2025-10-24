@@ -5,6 +5,7 @@ import TutorCard from "~/components/tutor/tutor-card.astro";
 import TutorCardContent from "~/components/tutor/tutor-card-content.astro";
 import { contentfulClient } from "~/lib/contentful";
 import type { TutorSkeleton } from "~/lib/types";
+import HeroBackground from "~/components/background/hero-background.astro";
 
 const tutors = await contentfulClient.getEntries<TutorSkeleton>({
   content_type: "tutor",
@@ -12,7 +13,8 @@ const tutors = await contentfulClient.getEntries<TutorSkeleton>({
 ---
 
 <Layout>
-  <section class="container min-h-screen">
+  <HeroBackground />
+  <section class="container min-h-screen relative z-10">
     <div class="flex flex-col items-center text-center mb-12 mt-28">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
         Semua Tutor

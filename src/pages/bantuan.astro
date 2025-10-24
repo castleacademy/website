@@ -1,10 +1,12 @@
 ---
 import { Button } from "~/components/ui/button";
 import Layout from "~/layouts/Layout.astro";
+import HeroBackground from "~/components/background/hero-background.astro";
 ---
 
 <Layout>
-  <main class="min-h-screen flex items-center justify-center flex-col gap-3">
+  <HeroBackground />
+  <main class="min-h-screen flex items-center justify-center flex-col gap-3 relative z-10">
     <h1 aria-hidden="true" aria-label="Pusat Bantuan"></h1>
     <p class="font-bold text-4xl">Berkolaborasi dengan</p>
     <p class="font-bold text-5xl font-serif italic text-secondary-600">

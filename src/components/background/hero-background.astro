@@ -1,0 +1,24 @@
+---
+// Hero Background Component
+// Uses SVG backgrounds for desktop and mobile
+---
+
+<div class="absolute inset-0 overflow-hidden">
+  <!-- Desktop Background -->
+  <div class="hidden lg:block absolute inset-0 w-full h-full">
+    <img 
+      src="/src/assets/hero-desktop.svg" 
+      alt="Hero Background Desktop"
+      class="w-full h-full object-cover object-top"
+    />
+  </div>
+  
+  <!-- Mobile Background -->
+  <div class="block lg:hidden absolute inset-0 w-full h-full">
+    <img 
+      src="/src/assets/hero-mobile.svg" 
+      alt="Hero Background Mobile"
+      class="w-full h-full object-cover object-top"
+    />
+  </div>
+</div>

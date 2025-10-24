@@ -11,6 +11,7 @@ import CourseDialogTrigger from "~/components/course/course-dialog-trigger.astro
 
 import { contentfulClient } from "~/lib/contentful";
 import type { CourseSkeleton} from "~/lib/types";
+import HeroBackground from "~/components/background/hero-background.astro";
 
 function getTutor(link: any): { name?: string; rating?: number } {
   const anyLink = link as { fields?: { name?: string; rating?: number } } | undefined;
@@ -36,7 +37,8 @@ const coursesData = courses.items.map(course => {
 ---
 
 <Layout>
-  <section class="container min-h-screen">
+  <HeroBackground />
+  <section class="container min-h-screen relative z-10">
     <div class="flex flex-col items-center text-center mb-7 mt-28">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
         Semua Kursus
