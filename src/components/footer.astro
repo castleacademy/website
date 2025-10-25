@@ -4,34 +4,39 @@
 
 <footer class="bg-primary-600">
   <div class="container flex flex-col items-center">
-    <div class="pt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div
+      class="pt-14 grid grid-cols-1 md:grid-cols-3 gap-6 justify-between w-full *:space-y-2"
+    >
       <div>
-        <h2>Castle Academy</h2>
-        <p>Blulaksumur, Caturtunggal, Depok, Sleman, Dearah Istimewa Yogyakarta</p>
+        <h2 class="font-bold">Castle Academy</h2>
       </div>
       <div>
-        <h2>Halaman</h2>
-        <ul>
-          <li>
-            <a href="#">Beranda</a>
-          </li>
-          <li>
-            <a href="#">Tentang Kami</a>
-          </li>
-          <li>
-            <a href="#">Beranda</a>
-          </li>
-          <li>
-            <a href="#">Tentang Kami</a>
-          </li>
-        </ul>
+        <h2 class="font-bold">Halaman</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <ul>
+            <li>
+              <a href="#home">Beranda</a>
+            </li>
+            <li>
+              <a href="kursus">Katalog Kursus</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="/tutor">Tutor-Tutor</a>
+            </li>
+            <li>
+              <a href="/bantuan">Pusat Bantuan</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div>
-        <h2>Hubungi Kami</h2>
-        <p>Castle Academy is a platform for learning and growing.</p>
+        <h2 class="font-bold">Hubungi Kami</h2>
+        <p>itcastleacademy@gmail.com</p>
       </div>
     </div>
-    <hr class="w-full border-neutral-200 my-6" />
+    <hr class="w-full border-black my-6" />
     <div class="flex items-center gap-2 text-sm md:text-base pb-14">
       Built Together With{" "}
       <a
@@ -46,7 +51,7 @@
           width={111}
           height={15}
           sizes="60%"
-          class="h-[10px] w-auto md:h-[12px] grayscale brightness-0 invert"
+          class="h-[10px] w-auto md:h-[12px] xl:h-[13px] grayscale brightness-0"
         />
       </a>
     </div>

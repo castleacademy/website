@@ -4,14 +4,14 @@ import HeroBackground from "~/components/background/hero-background.astro";
 import MentorCarousel from "./components/_hero-carousel.astro";
 ---
 
-<div class="bg-white relative overflow-hidden">
+<div class="bg-white relative overflow-hidden" id="home">
   <HeroBackground />
 
   <div
     class="relative z-1 flex items-center justify-center flex-col mt-64 mb-16"
   >
     <div
-      class="bg-transparent border-2 border-primary-500 px-4 py-2 rounded mb-4"
+      class="bg-transparent border-2 border-secondary-500 text-secondary-600 px-4 py-2 rounded mb-4"
     >
       500+ Mentor Terkurasi | 50+ Bidang Studi
     </div>
@@ -35,7 +35,7 @@ import MentorCarousel from "./components/_hero-carousel.astro";
     </p>
     <div class="mt-8 space-x-5 mb-18">
       <a href="#">
-        <Button> Tentang Kami </Button>
+        <Button variant={"outline-blue"}> Tentang Kami </Button>
       </a>
       <a href="#">
         <Button variant={"embossed"}> Lihat Semua Kursus </Button>
